@@ -1,0 +1,6 @@
+FROM marwaney/ssh-server:centos
+COPY key.pub /root/.ssh/authorized_keys
+RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N '' -y
+# RUN ssh-keygen  -y  -t rsa -f /etc/ssh/ssh_host_dsa_key -N '' 
+# RUN ssh-keygen -y -t rsa -f /etc/ssh/ssh_host_ed25519_key -N '' 
+ENTRYPOINT nohup /usr/sbin/sshd && sleep infinity
